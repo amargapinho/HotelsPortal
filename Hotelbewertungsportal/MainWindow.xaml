@@ -1,0 +1,237 @@
+﻿<Window x:Class="Hotelbewertungsportal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotelbewertungsportal"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="450"
+        WindowStyle = "None">
+
+    <Grid>
+       
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+
+            <!-- Erstes Tab -->
+            <TabItem Header="Hotelbewertungen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height ="80"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                        <RowDefinition Height ="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background ="SkyBlue"
+              Grid.RowSpan="1">
+                    </Grid>
+
+                    <TextBlock
+                   Foreground="Black"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontWeight="Medium"
+                   FontStretch="ExtraExpanded"
+                   FontSize="24"
+                   FontFamily="Arial"><Run Text="Hotelbewertungen"/><Run Text=""/></TextBlock>
+
+                    <!-- Frage Nr. 1 - Username -->
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Username"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10"
+                           >
+                        </TextBlock>
+                        <TextBox x:Name="Username" 
+                     Height="20"
+                     Margin="100,0, 100,0"
+                     TextWrapping="Wrap" TextChanged="Username_TextChanged"/>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Frage Nr. 2 - Hotelname -->
+                    <StackPanel Grid.Row="2">
+                        <TextBlock Text ="Hotelname"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
+
+                        <StackPanel>
+                            <ComboBox SelectionChanged="HotelnameBox_SelectionChanged" DisplayMemberPath="Hotelname" SelectedValuePath="Id" SelectedItem="Content" x:Name="HotelnameBox" Margin="100,0, 100,0" >
+
+                            </ComboBox>
+                        </StackPanel>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Frage Nr. 3 - Check-in Datum -->
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Text ="Wann waren Sie in diesem Hotel?"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10">
+                        </TextBlock>
+
+                        <DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" Name="DatePicker" IsTodayHighlighted="True" HorizontalAlignment="Center"/>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Frage Nr. 4 - Aufenthaltsdauer -->
+                    <StackPanel Grid.Row="4">
+                        <TextBlock Text ="Wie lang waren Sie in diesem Hotel?"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10">
+                        </TextBlock>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="Dauer">
+                            <RadioButton Checked="RadioButtonChecked" x:Name="Dauer1" Margin="0,0,10,0">1-3 Tage</RadioButton>
+                            <RadioButton Checked="RadioButtonChecked" x:Name="Dauer2" Margin="0,0,10,0">3-5 Tage</RadioButton>
+                            <RadioButton Checked="RadioButtonChecked" x:Name="Dauer3" Margin="0,0,10,0">1-2 Wochen</RadioButton>
+                            <RadioButton Checked="RadioButtonChecked" x:Name="Dauer4" Margin="0,0,10,0">Länger als 2 Wochen</RadioButton>
+                        </StackPanel>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Frage Nr. 5 - Bewertung -->
+                    <StackPanel Grid.Row="5">
+                        <TextBlock Text ="Wie bewerten Sie das Hotel?"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10">
+                        </TextBlock>
+
+                        <ListBox SelectionChanged="Sternebewertung_SelectionChanged" Margin="10,10,0,10" Name="Sternebewertung" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="105">
+                            <ListBoxItem Name="EinStern" HorizontalAlignment="Center" Content="★☆☆☆☆"></ListBoxItem>
+                            <ListBoxItem Name="ZweiSterne" HorizontalAlignment="Center" Content="★★☆☆☆"></ListBoxItem>
+                            <ListBoxItem Name="DreiSterne" HorizontalAlignment="Center" Content="★★★☆☆"></ListBoxItem>
+                            <ListBoxItem Name="VierSterne" HorizontalAlignment="Center" Content="★★★★☆"></ListBoxItem>
+                            <ListBoxItem Name="FuenfSterne" HorizontalAlignment="Center" Content="★★★★★"></ListBoxItem>
+                        </ListBox>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Frage Nr. 6 - Empfehlenswert oder nicht -->
+                    <StackPanel Grid.Row="6">
+                        <TextBlock Text ="Empfehlen Sie das Hotel weiter?"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="10">
+                        </TextBlock>
+                        <StackPanel HorizontalAlignment="Center">
+                            <RadioButton Checked="RadioButtonChecked" Name="Empfehlenswert" HorizontalAlignment="Left" Margin="0,0,0,0" ClickMode="Press">Ja</RadioButton>
+                            <RadioButton Checked="RadioButtonChecked" Name="NichtEmpfehlenswert" HorizontalAlignment="Left" Margin="0,0,0,0" ClickMode="Press">Nein</RadioButton>
+                        </StackPanel>
+
+                        <Border Margin="0,10,0,0" BorderThickness="0,0,0,1" BorderBrush="SkyBlue">
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <!-- Reset Button -->
+                        <Button x:Name="ResetButton" 
+                       Margin="20"
+                        Content="Reset"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontWeight="Medium"
+                        FontSize="14"
+                        FontFamily="Arial" Click="ResetButton_Click">
+
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Silver"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <!-- Senden Button -->
+                        <Button x:Name="SendenButton" 
+                   IsEnabled="False"
+                        Content="Senden"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontWeight="Medium"
+                        FontSize="14"
+                        FontFamily="Arial" Click="SendenButton_Click_1">
+
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="SkyBlue"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        
+                    </StackPanel >
+
+
+                </Grid>
+            </TabItem>
+
+            <!-- Zweites Tab -->
+            <TabItem Name="Infos" Header="Zu den Hotels" Height="23" Margin="-2.2,-2,-2.4,-0.2" VerticalAlignment="Bottom">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height ="80"/>
+                        <RowDefinition Height ="*"/>
+                        <RowDefinition Height ="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background ="SkyBlue" 
+                    Grid.RowSpan="1">
+                    </Grid>
+
+                    <TextBlock
+                   Foreground="Black"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontWeight="Medium"
+                   FontStretch="ExtraExpanded"
+                   FontSize="24"
+                   FontFamily="Arial"><Run Text="Informationen zu den Hotels"/><Run/></TextBlock>
+
+                    <DataGrid SelectionChanged="InfoHotels_SelectionChanged" Margin="0,20,0,0" Grid.Row="1" Name="InfoHotels" CanUserAddRows="False" AutoGenerateColumns="False">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="Hotel" Binding="{Binding Hotelname}"/>
+
+                            <DataGridTextColumn Width="*" Header="Adresse" Binding="{Binding Adresse}"/>
+
+                            <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+
+                            <DataGridTextColumn Width="*" Header="Preis" Binding="{Binding Preis,StringFormat=c, ConverterCulture='de-DE'}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Label Grid.Row="2" Content="Avg. Rating : " VerticalAlignment="Center" Width="150" FontSize="16" Name="lblRatings" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+    
+    </Grid>
+
+</Window>
